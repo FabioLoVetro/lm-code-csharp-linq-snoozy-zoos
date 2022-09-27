@@ -39,14 +39,16 @@ Cuddles, 4
 Wheezy, 7
 */
 
-/*
-var challengeOneZooAnimals = // Write your LINQ Query here
+
+var challengeOneZooAnimals = from a in zooAnimals
+                             where a.Age > 3 && a.Age < 8
+                             select a;
 
 foreach (var zooAnimal in challengeOneZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -69,14 +71,16 @@ MUMBLE
 ASMODEUS
 */
 
-/*
-var challengeTwoZooAnimals = // Write your LINQ Query here
+
+var challengeTwoZooAnimals = from a in zooAnimals
+                             where a.Name.Length > 6
+                             select a;
 
 foreach (var zooAnimal in challengeTwoZooAnimals)
 {
-    Console.WriteLine($"{zooAnimal}");
+    Console.WriteLine($"{zooAnimal.Name.ToUpper()}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -105,14 +109,16 @@ Dave, 3
 Amber, 2
 */
 
-/* 
-var challengeThreeZooAnimals = // Write your LINQ Query here
+
+var challengeThreeZooAnimals = from a in zooAnimals
+                               orderby (a.Age) descending
+                               select a;
 
 foreach (var zooAnimal in challengeThreeZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -146,7 +152,18 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
-// var challengeFourZooAnimals = // Write your LINQ Query here
+var challengeFourZooAnimals = from a in zooAnimals
+                              orderby a.Location
+                              group a by a.Location into zooLocation
+                              select zooLocation;
+
+foreach (var a in challengeFourZooAnimals)
+{
+    Console.WriteLine($"Zoo Location is: {a.Key}");
+    foreach (var an in a)
+        Console.WriteLine($"Hello, my name is {an.Name}");
+}
+
 
 // Can you write a nested foreach loop to create the expected output above?
 
